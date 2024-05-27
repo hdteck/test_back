@@ -47,8 +47,7 @@ jobs:
           LOG: "DEBUG"
   workflow-cd:
     needs: 'automerge'
-    runs-on: ubutu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: lanza-workflow-cd
         uses: ./.github/workflows/workflow-cd.yml@main       
-
