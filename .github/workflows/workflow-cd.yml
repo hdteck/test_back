@@ -11,7 +11,7 @@ name: backend action cd
 on:
 
   workflow_run:
-     workflows: ["backend action ci"]
+     workflows: [backend action ci]
      types:
       - completed
 
