@@ -9,13 +9,11 @@
 name: backend action cd
 
 on:
-
   workflow_run:
-     workflows: ['backend action ci']
-     types:
-      - completed
-      - requested
-     branches: [main,feature]
+      workflows: ['backend action ci']
+      types: [completed]
+      branches:
+          - 'main'
 
 jobs:
   pull-request:
