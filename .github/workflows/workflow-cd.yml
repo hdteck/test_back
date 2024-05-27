@@ -21,7 +21,7 @@ jobs:
         with:
          token: ${{ secrets.TOKEN_PULLREQ }}
          commit-message: Auto Pull Request
-         title: Your desired title
+         title: 'PR main'
          body: Auto-created Pull Request
          branch: main # The branch where you commit
          base: feature # Don't forget to specify the right base branch here
