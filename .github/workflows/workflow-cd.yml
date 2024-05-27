@@ -32,6 +32,8 @@ jobs:
           pr_draft: true                                    # Creates pull request as draft
           pr_allow_empty: true                              # Creates pull request even if there are no changes
           github_token: "${{ secrets.TOKEN_PULLREQ }}"      # If blank, default: secrets.GITHUB_TOKEN
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
  
   automerge:
     needs: 'pull-request'
