@@ -18,22 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: pull-request
-        uses: diillson/auto-pull-request@v1.0.1
+        run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
         env:
-          GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
-        with:
-          source_branch: "main"                                 # If blank, default: triggered branch
-          destination_branch: "develop"                      # If blank, default: master
-          pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
-          pr_body: ""                                      # Full markdown support, requires pr_title to be set
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
-          pr_reviewer: "diillson,worker"                         # Comma-separated list (no spaces)
-          pr_assignee: "diillson,worker"                         # Comma-separated list (no spaces)
-          pr_label: "auto-pr"                               # Comma-separated list (no spaces)
-          pr_milestone: "Milestone 1"                       # Milestone name no Required it is comment
-          pr_draft: true                                    # Creates pull request as draft
-          pr_allow_empty: true                              # Creates pull request even if there are no changes
-
+              GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
 
  
   automerge:
