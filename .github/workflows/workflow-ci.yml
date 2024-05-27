@@ -45,4 +45,6 @@ jobs:
           MERGE_METHOD: "rebase"
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
-   
+  workflowcd:
+    uses: ./.github/workflows/workflow-cd.yml
+ 
