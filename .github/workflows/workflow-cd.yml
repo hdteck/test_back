@@ -37,7 +37,7 @@ on:
             run: echo ${{steps.open-pr.outputs.has_changed_files}}
   automerge:
     needs: 'checkout-feature'
-    if: contains('${{github.ref_name}}', 'main')
+    if: contains('${{github.ref_name}}', 'develop')
     runs-on: ubuntu-latest
     steps:
       - name: execute merge
