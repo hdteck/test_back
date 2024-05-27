@@ -17,7 +17,6 @@ on:
       - requested
      branches: [main,feature]
 
-
 jobs:
   pull-request:
     runs-on: ubuntu-latest
