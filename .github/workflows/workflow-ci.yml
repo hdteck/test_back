@@ -49,5 +49,8 @@ jobs:
     needs: 'automerge'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: lanza-workflow-cd
         uses: ./.github/workflows/workflow-cd.yml@main       
