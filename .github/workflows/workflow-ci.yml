@@ -46,5 +46,6 @@ jobs:
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
   workflowcd:
+    needs: automerge
     uses: ./.github/workflows/workflow-cd.yml
  

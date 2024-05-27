@@ -20,11 +20,16 @@ jobs:
         uses: peter-evans/create-pull-request@v3.10.1
         with:
          token: ${{ secrets.TOKEN_PULLREQ }}
+         committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+         author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+         signoff: false
          commit-message: Auto Pull Request
          title: 'PR main'
          body: Auto-created Pull Request
          branch: main # The branch where you commit
          base: feature # Don't forget to specify the right base branch here
+         milestone: 1
+         draft: false
  
   automerge:
     needs: 'pull-request'
