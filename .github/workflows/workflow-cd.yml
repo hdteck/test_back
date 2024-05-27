@@ -1,0 +1,52 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: backend action cd
+
+on:
+
+  workflow_run:
+     workflows: ["backend action ci"]
+     types:
+      - completed
+
+
+      jobs:
+        pull-request:
+          runs-on: ubuntu-latest
+          steps:
+          - uses: actions/checkout@v3
+          - name: pull-request
+            id: open-pr
+            uses: diillson/auto-pull-request@v1.0.1
+            with:
+              destination_branch: "develop"
+              github_token: ${{ secrets.TOKEN_PULLREQ }}
+          - name: output-url
+            run: echo ${{steps.open-pr.outputs.pr_url}}
+          - name: output-number
+            run: echo ${{steps.open-pr.outputs.pr_number}}
+          - name: output-created
+            run: echo ${{steps.open-pr.outputs.pr_created}}
+          - name: output-has-changed-files
+            run: echo ${{steps.open-pr.outputs.has_changed_files}}
+  automerge:
+    needs: 'checkout-feature'
+    if: contains('${{github.ref_name}}', 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute merge
+        uses: "gsoc2/automerge-action@v0.16.2"
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
+          MERGE_LABELS: ""
+          MERGE_REQUIRED_APPROVALS: "0"
+          MERGE_METHOD: "rebase"
+          PULL_REQUEST: "${{ github.event.pull_request.number }}"
+          LOG: "DEBUG"
+     
