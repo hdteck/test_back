@@ -45,4 +45,10 @@ jobs:
           MERGE_METHOD: "rebase"
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
+  workflow-cd:
+    needs: 'automerge'
+    runs-on: ubutu-latest
+    steps:
+      - name: lanza-workflow-cd
+        uses: ./.github/workflows/workflow-cd.yml@main       
 
