@@ -9,35 +9,23 @@
 name: backend action cd
 
 on:
+  workflow_call:
+  
 
-  workflow_run:
-     workflows: ["backend action ci"]
-     types:
-      - completed
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
+        env:
+              GH_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
 
-
-      jobs:
-        pull-request:
-          runs-on: ubuntu-latest
-          steps:
-          - uses: actions/checkout@v3
-          - name: pull-request
-            id: open-pr
-            uses: diillson/auto-pull-request@v1.0.1
-            with:
-              destination_branch: "develop"
-              github_token: ${{ secrets.TOKEN_PULLREQ }}
-          - name: output-url
-            run: echo ${{steps.open-pr.outputs.pr_url}}
-          - name: output-number
-            run: echo ${{steps.open-pr.outputs.pr_number}}
-          - name: output-created
-            run: echo ${{steps.open-pr.outputs.pr_created}}
-          - name: output-has-changed-files
-            run: echo ${{steps.open-pr.outputs.has_changed_files}}
+ 
   automerge:
-    needs: 'checkout-feature'
-    if: contains('${{github.ref_name}}', 'main')
+    needs: 'pull-request'
+    if: contains('${{github.ref_name}}', 'develop')
     runs-on: ubuntu-latest
     steps:
       - name: execute merge
@@ -49,4 +37,3 @@ on:
           MERGE_METHOD: "rebase"
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
-     
