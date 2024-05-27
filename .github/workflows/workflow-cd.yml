@@ -14,6 +14,7 @@ on:
       types: [completed]
       branches:
           - 'main'
+          - 'feature'
 
 jobs:
   pull-request:
