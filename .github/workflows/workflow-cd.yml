@@ -31,7 +31,7 @@ jobs:
       - name: execute merge
         uses: "gsoc2/automerge-action@v0.16.2"
         env:
-          GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
+          GITHUB_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
           MERGE_LABELS: ""
           MERGE_REQUIRED_APPROVALS: "0"
           MERGE_METHOD: "rebase"
