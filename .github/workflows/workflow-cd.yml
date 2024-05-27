@@ -23,8 +23,8 @@ jobs:
          commit-message: Auto Pull Request
          title: Your desired title
          body: Auto-created Pull Request
-         branch: ${{ github.ref }} # The branch where you commit
-         base: main # Don't forget to specify the right base branch here
+         branch: main # The branch where you commit
+         base: feature # Don't forget to specify the right base branch here
  
   automerge:
     needs: 'pull-request'
