@@ -19,7 +19,7 @@ jobs:
       - name: create pull request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'Created by Github action -> Origen ${{github.ref_name}}'
         env:
-            GH_TOKEN: ${{ secrets.TOKEN_PULLREQ }}
+            GH_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
  
   automerge:
     needs: 'pull-request'
