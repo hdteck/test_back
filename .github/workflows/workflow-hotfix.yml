@@ -27,7 +27,7 @@ jobs:
       - name: execute merge
         uses: "gsoc2/automerge-action@v0.16.2"
         with:
-          ref: hotfix
+          ref: develop
         env:
           GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
           MERGE_LABELS: ""
