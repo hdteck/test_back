@@ -19,11 +19,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: main
-      - run: git remote add origin https://github.com/hdteck/test_back.git    
+      - run: git remote add origin https://github.com/hdteck/test_back.git
+        continue-on-error: true    
       - run: git add -A
       - run: git config --global user.email "user@github.es"
       - run: git config --global user.name "github[bot]"
       - run: git commit --message 'primer commit a develop'
+        continue-on-error: true 
       - run: git push origin develop
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
