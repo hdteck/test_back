@@ -49,6 +49,6 @@ jobs:
             MERGE_METHOD: "merge"
             PULL_REQUEST: "${{ github.event.pull_request.number }}"
             LOG: "DEBUG"
-  workflowcd:
+ release:
     needs: automerge
     uses: ./.github/workflows/release.yml            
