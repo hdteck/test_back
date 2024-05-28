@@ -20,7 +20,10 @@ jobs:
         with:
           ref: main
       - run: git add -A
-      - run: git commit --message 'primer commit to develop'
+      - run: git config --global user.email "user@github.es"
+      - run: git config --global user.name "github[bot]"
+      - run: git commit --message 'primer commit a develop'
+      - run: git push origin develop
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
         env:
