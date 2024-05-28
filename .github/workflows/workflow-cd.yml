@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: main
-      - run: git add random.txt
+      - run: git add -A
       - run: git rebase --interactive HEAD~3
       - run: git commit --message 'primer commit to develop'
       - name: pull-request
