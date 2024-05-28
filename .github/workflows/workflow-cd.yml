@@ -26,7 +26,7 @@ jobs:
       - run: git config --global user.name "github[bot]"
       - run: git commit --message 'primer commit a develop'
         continue-on-error: true 
-      - run: git push origin develop
+      - run: git push --force-with-lease origin develop
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
         env:
