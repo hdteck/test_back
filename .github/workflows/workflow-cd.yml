@@ -14,21 +14,7 @@ on:
 
 jobs:
 
- automerge:  
-    if: contains('${{github.ref_name}}', 'develop')
-    runs-on: ubuntu-latest
-    steps:
-      - name: execute merge
-        uses: "gsoc2/automerge-action@v0.16.2"
-        env:
-          GITHUB_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
-          MERGE_LABELS: ""
-          MERGE_REQUIRED_APPROVALS: "0"
-          MERGE_METHOD: "merge"
-          PULL_REQUEST: "${{ github.event.pull_request.number }}"
-          LOG: "DEBUG"
  pull-request:
-    needs: automerge
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -47,3 +33,19 @@ jobs:
         run: gh pr create -B develop -H main --title 'PR to develop' --body 'PullRequest numero -> ${{github.ref_name}}'
         env:
               GH_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
+ automerge:
+    needs: pull-request  
+    if: contains('${{github.ref_name}}', 'develop')
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute merge
+        uses: "gsoc2/automerge-action@v0.16.2"
+        with:
+          ref: develop
+        env:
+            GITHUB_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
+            MERGE_LABELS: ""
+            MERGE_REQUIRED_APPROVALS: "0"
+            MERGE_METHOD: "merge"
+            PULL_REQUEST: "${{ github.event.pull_request.number }}"
+            LOG: "DEBUG"            
