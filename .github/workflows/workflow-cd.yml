@@ -44,6 +44,6 @@ jobs:
       - run: git push --force-with-lease origin develop
         continue-on-error: true
       - name: pull-request
-        run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero -> ${{github.ref_name}}'
+        run: gh pr create -B develop -H main --title 'PR to develop' --body 'PullRequest numero -> ${{github.ref_name}}'
         env:
               GH_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
