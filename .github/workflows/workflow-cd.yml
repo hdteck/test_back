@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Commit files
-        run: |
-          git config --local user.email "github-usr@gmail.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -a -m "añadidos cambios"
+#      - name: Commit files
+#        run: |
+#          git config --local user.email "github-usr@gmail.com"
+#          git config --local user.name "github-actions[bot]"
+#          git commit -a -m "añadidos cambios"
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
         env:
