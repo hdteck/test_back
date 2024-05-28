@@ -20,7 +20,6 @@ jobs:
         with:
           ref: main
       - run: git add -A
-      - run: git rebase --interactive HEAD~3
       - run: git commit --message 'primer commit to develop'
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
