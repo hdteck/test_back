@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest  
     steps:
       - name: version-check
-        run: echo "se comprueba si la version es estable"
+        run: echo "se comprueba que la version es estable"
         shell: bash     
   automerge:
     needs: 'checkversion'

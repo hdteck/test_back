@@ -48,4 +48,7 @@ jobs:
             MERGE_REQUIRED_APPROVALS: "0"
             MERGE_METHOD: "merge"
             PULL_REQUEST: "${{ github.event.pull_request.number }}"
-            LOG: "DEBUG"            
+            LOG: "DEBUG"
+ release:
+    needs: automerge
+    uses: ./.github/workflows/release.yml            

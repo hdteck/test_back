@@ -5,10 +5,8 @@
 name: 'backend hotfix'
 
 on:
-  push:
-    branches:
-      - hotfix
-      - main
+  workflow_dispatch:
+
 
 jobs:
   checkout: 
