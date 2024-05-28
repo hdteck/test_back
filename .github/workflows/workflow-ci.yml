@@ -42,7 +42,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
           MERGE_LABELS: ""
           MERGE_REQUIRED_APPROVALS: "0"
-          MERGE_METHOD: "rebase"
+          MERGE_METHOD: "merge"
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
 
