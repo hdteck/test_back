@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Commit files
         run: |
-          git commit -a -m "Add changes"
+          git commit -a -m "añadidos cambios"
       - name: pull-request
         run: gh pr create -B main -H develop --title 'PR to develop' --body 'PullRequest numero ${{github.ref_name}}'
         env:
@@ -34,9 +34,9 @@ jobs:
       - name: execute merge
         uses: "gsoc2/automerge-action@v0.16.2"
         env:
-          GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
+          GITHUB_TOKEN: "${{ vars.TOKEN_PULLREQ }}"
           MERGE_LABELS: ""
           MERGE_REQUIRED_APPROVALS: "0"
-          MERGE_METHOD: "rebase"
+          MERGE_METHOD: "merge"
           PULL_REQUEST: "${{ github.event.pull_request.number }}"
           LOG: "DEBUG"
