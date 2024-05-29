@@ -26,14 +26,14 @@ jobs:
             draft: false
             prerelease: false
     release2:
-        name: Create Release
+        name: Create Release2
         runs-on: ubuntu-latest
         steps:
           - name: Checkout code
             uses: actions/checkout@v4
             with:
               ref: develop
-          - name: Create Release
+          - name: Create Release2
             id: create_release2
             uses: actions/create-release@v1
             env:
