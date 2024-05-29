@@ -25,3 +25,25 @@ jobs:
               - Rama ${{ github.head_ref }}
             draft: false
             prerelease: false
+    release2:
+        name: Create Release
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+            with:
+              ref: develop
+          - name: Create Release
+            id: create_release2
+            uses: actions/create-release@v1
+            env:
+              GITHUB_TOKEN: ${{ vars.TOKEN_PULLREQ }} # This token is provided by Actions, you do not need to create your own token
+            with:
+              tag_name: "v1.0"
+              release_name: Release ${{ github.head_ref }}
+              body: |
+                  Changes in this Release
+                  - Release de pullrquest "${{ github.event.pull_request.number }}"
+                  - Rama ${{ github.head_ref }}
+              draft: false
+              prerelease: false
