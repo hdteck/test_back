@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: "${{ github.head_ref }}"
+          ref: "feature"
   checkversion:
     needs: 'checkout'
     runs-on: ubuntu-latest  
@@ -38,6 +38,8 @@ jobs:
     steps:
       - name: execute merge
         uses: "gsoc2/automerge-action@v0.16.2"
+        with:
+          ref: main
         env:
           GITHUB_TOKEN: "${{ secrets.TOKEN_PULLREQ }}"
           MERGE_LABELS: ""
