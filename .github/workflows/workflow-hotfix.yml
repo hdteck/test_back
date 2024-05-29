@@ -50,16 +50,14 @@ jobs:
       - name: "Set latest tag"
         id: set-latest-tag
         run:  |
-         echo "latest_tag=$(git tag | sort --version-sort | tail -n1)" >> $GITHUB_ENV 
-         git tag
-         echo $latest_tag
+         echo "latest_tag=$(git tag | tail -n1)" >> $GITHUB_ENV 
         shell: bash
       
       - name: Edit Release
         uses: irongut/EditRelease@v1.2.0
         with:
             token: ${{ secrets.TOKEN_PULLREQ }}
-            id: "1.2"
+            id: "157921768"
             name: "Hotfix ${{ env.latest_tag }}"
             prerelease: false
             body: "añadidos hotfixes."
