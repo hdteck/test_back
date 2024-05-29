@@ -44,6 +44,9 @@ jobs:
     needs: 'automerge'
     runs-on: ubuntu-latest 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: "hotfix"
       - name: "Set latest tag"
         id: set-latest-tag
         run: echo "latest_tag=$(git tag | sort --version-sort | tail -n1)" >> $GITHUB_ENV
