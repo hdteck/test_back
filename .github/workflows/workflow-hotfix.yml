@@ -43,13 +43,17 @@ jobs:
   edit-last-release:
     needs: 'automerge'
     runs-on: ubuntu-latest 
-    steps:      
+    steps:
+      - name: "Set latest tag"
+        id: set-latest-tag
+        run: echo "latest_tag=$(git tag | sort --version-sort | tail -n1)" >> $GITHUB_ENV
+      
       - name: Edit Release
         uses: irongut/EditRelease@v1.2.0
         with:
             token: ${{ secrets.TOKEN_PULLREQ }}
-            id: ${{ github.event.release.id }}
-            name: "Hotfix ${{ github.event.release.id }}"
+            id: ${{ env.latest_tag }}
+            name: "Hotfix ${{ env.latest_tag }}"
             prerelease: false
             body: "añadidos hotfixes."
             files: "changelog.md"
