@@ -59,7 +59,7 @@ jobs:
         uses: irongut/EditRelease@v1.2.0
         with:
             token: ${{ secrets.TOKEN_PULLREQ }}
-            id: 1.2
+            id: "1.2"
             name: "Hotfix ${{ env.latest_tag }}"
             prerelease: false
             body: "añadidos hotfixes."
